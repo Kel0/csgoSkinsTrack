@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+    <ul class="navbar-nav">
+      <% if ( typeof isHome !== 'undefined' && isHome ) { %>
+      <li class="nav-item active">
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <% } else {%>
+      <li class="nav-item">
+          <a class="nav-link" href="/home">Home </a>
+        </li>
+        <% if ( typeof isLogin !== 'undefined' && isLogin ) { %>
+         <li class="nav-item active">
+          <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+          </li>
+        <% } else { %>
+        <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+            </li
+        <% } %>
+      </li>
+
+      <% if ( typeof isReg !== 'undefined' && isReg ) { %>
+        <li class="nav-item active">
+          <a class="nav-link" href="/registration" tabindex="-1" aria-disabled="true">Registration <span class="sr-only">(current)</span></a>
+          </li>
+      <% } else { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/registration" tabindex="-1" aria-disabled="true">Registration</a>
+        </li>
+      <% } %>
+      </li>
+      <% } %>
+      
+       
+
+      <% if ( typeof user !== 'undefined' ) {%>
+      <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+</nav>

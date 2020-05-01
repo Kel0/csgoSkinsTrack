@@ -1,0 +1,29 @@
+.nav-item:not(:last-child){
+  margin-right:1.5rem;
+}
+.submenu{
+  height: 3.125rem;
+}
+
+.dropdown-menu{
+  padding:0;
+  border-radius:0;
+  transform: translateX(-50%);
+  left:50%;
+  top: 3rem;
+}
+.dropdown-item{
+  color:#fff;
+  max-height:3rem;
+  overflow:hidden;
+  border-radius:0;
+  border-color: transparent;
+
+}
+.list-group, 
+.list-group-item{
+  max-height:3rem;
+  border-radius:0;
+  border-color: transparent;
+  padding: .2rem .5rem;
+}

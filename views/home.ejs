@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/reg.css" />
+	<link rel="stylesheet" href="css/home.css" />
+	<link rel="stylesheet" href="css/fonts.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+	<script>
+		var bankUser = "<%= bankValueInform %>";
+		var bb = bankUser;
+		var bankCurrInform = "<%= bankCurrInform %>";
+	</script>
+</head>
+<body>
+	<%- include('partials/nav.ejs');%>
+	
+	<div class="headerS">
+		<div class="bank_inputs">
+			<div class="alert alert-success alert hidden" role="alert" id="success" style="text-align: center;"></div>
+			<div class="alert alert-danger alert hidden" role="alert" id="fail" style="text-align: center;"></div>
+			<div class="row justify-content-md-center">
+				<form id="bankForm">
+					<button type="button" class="btn btn-primary" onclick="bankInputs();">Update or create your bank</button>
+					<p style="text-align: center;"><strong><%= user.email %></strong></p>
+				</form>
+			</div>
+		</div>
+		
+		<div class="bankInform">
+			<div class="row justify-content-md-center">
+				<div class="card" style="width: 18rem;">
+				  <ul class="list-group list-group-flush">
+				    <li class="list-group-item" id="bankValueInform" style="text-align: center;"><span style="font-size: 22px;">Bank:</span> <br><span id="bankSpan"><%= bankValueInform %> <%= bankCurrInform %></span></li>
+				  </ul>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="opertaionsTable">
+			<div class="row justify-content-md-center" >
+				<table class="table" style="width: 1400px;">
+  					<thead>
+  						<th scope="col">Item</th>
+  						<th scope="col">Count</th>
+  						<th scope="col">Bought price</th>
+  						<th scope="col">Expected price</th>
+  					</thead>
+  					<tbody>
+  						<tr>
+					      <td><input type="text" id="item-Name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="width: 300px;"></td>
+					      <td><input type="number" id="item-Count" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="width: 300px;" value="1"></td>
+					      <td><input type="text" id="item-boughtPrice" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="width: 300px;"></td>
+					      <td><input type="text" id="item-expPrice" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="width: 300px;"></td>
+					      <td><button class="btn btn-success" id="saveItem" onclick="saveItem();">Save</button></td>
+					    </tr>
+  					</tbody>
+  				</table>
+			</div>
+		</div>
+
+		<div class="opertaionsTable2" style="display: grid; justify-items: center;">
+			<div class="row justify-content-md-center" style="border: 1px solid #CDCDCD; max-height: 700px; width: 1400px; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.5); overflow-y: auto;">
+				<table class="table" style="width: 1400px;">
+  					<thead style="text-align: center;">
+  						<button class="btn btn-primary" style="margin: 5px;" onclick="getMarketPrice();">Scrape market prices</button>
+  						<th scope="col">#</th>
+  						<th scope="col">Item</th>
+  						<th scope="col">Count</th>
+  						<th scope="col">Bought price</th>
+  						<th scope="col">Expected price</th>
+  						<th scope="col">Market price</th>
+  					</thead>
+  					<tbody id="tbody">
+  						<% if ( items[0] !== null ) {%>
+	  						<% items.forEach( (item, index) => { %>
+	  						<tr style="text-align: center;" id="tr_<%= item._id %>">
+	  							<th scope="row" id="indexOfItem"><span class="price"><%= index + 1 %></span></th>
+								<td><span class="price" style="width: 60%;" id="name_<%= item._id %>"><%= item.itemName %></span></td>
+								<td><span class="price"><%= item.itemCount %></span></td>
+
+								<td style="font-size: 16px; color: #dc3544;" id="bought_<%= item._id %>">
+									<div class="numbers price">
+										<%= item.boughtPrice %> <br>
+										<span style="font-size: 12px; !important;">
+											<%= parseInt(item.itemCount) * parseFloat(item.boughtPrice) %>		
+										</span>
+									</div>
+								</td>
+								<td style="font-size: 16px; color: #3aa745;">
+									<div class="numbers price">
+										<%= item.expectedPrice %><br>
+										<span style="font-size: 12px; !important;">
+											<%= parseInt(item.itemCount) * parseFloat(item.expectedPrice) %>
+										</span>
+									</div>
+								</td>
+
+								<td id="market_<%= item._id %>"></td>
+								<td><button class="btn btn-danger" onclick="deleteItem(this.id);" id="<%= item._id %>">Delete</button></td>
+						    </tr>
+						    <%}); %>
+						<%} %>
+  					</tbody>
+  				</table>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="js/bankSave.js"></script>
+	<script src="js/homeJs.js"></script>
+	<script src="js/itemsLogic.js"></script>
+	<script src="js/getMarketPrice.js"></script>
+</body>
+</html>
