@@ -1,6 +1,6 @@
 const Bank = require('../../models/Bank');
 
-const saveBank = (req, res) => {
+const saveBank = async (req, res) => {
 	if ( req.session.auth ) {
 		const {
 			bankValue,
@@ -17,11 +17,13 @@ const saveBank = (req, res) => {
 			user_id: req.session.auth._id, 
 			bankValue: bankValue, 
 			currType: currType
-
-		}, { upsert: true }, (err, doc) => {
-				if (err) throw err;
-				return res.send(JSON.stringify({ status_code: 301 }));
-			});
+		}, { upsert: true })
+		.then(doc => {
+			return res.send(JSON.stringify({ status_code: 301 }));
+		})
+		.catch(err => {
+			if (err) throw err;
+		});
 	}
 }
 
