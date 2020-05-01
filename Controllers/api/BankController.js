@@ -24,12 +24,6 @@ const saveBank = async (req, res) => {
 		.catch(err => {
 			if (err) throw err;
 		});
-
-<<<<<<< HEAD
-		//comment of my life I GUESS
-=======
-		//comment of my kife
->>>>>>> eb9385c1e2796a6490afcf56c079fa5ff6d02773
 	}
 }
 
