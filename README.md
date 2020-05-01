@@ -6,4 +6,5 @@ Service for tracking market price of your skins
      npm install
 
 # Example
-     https://immense-waters-27499.herokuapp.com/register
+(csgoSkinsTrack)[https://immense-waters-27499.herokuapp.com/login]
+
