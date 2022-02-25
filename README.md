@@ -2,9 +2,10 @@
 
 Service for tracking market price of your skins
 
-# Set up project 
+# Set up project
+
      npm install
 
 # Example
-[csgoSkinsTrack](http://107.152.33.52:8005/login)
 
+[csgoSkinsTrack](http://107.152.33.52:8005/login)
